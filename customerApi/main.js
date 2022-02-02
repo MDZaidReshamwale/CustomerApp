@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
+var cors = require('cors')
 app.use(express.json());
+app.use(cors());
 
 var customers = [{
         id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",

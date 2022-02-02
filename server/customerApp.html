@@ -15,40 +15,52 @@
 
 <body>
     <script>
-        let customers = [{
-            id: 1,
-            name: 'MD Zaid',
-            email: 'zaid@yahoo.com',
-            phone: '9035486843',
-            address: "India",
-            city: "Bangalore"
-        }, {
-            id: 2,
-            name: 'Abd Villers',
-            email: 'abd360@mial.con',
-            phone: '9379525772',
-            address: "South Africa",
-            city: "Cape Town"
-        }, {
-            id: 3,
-            name: 'B Stokes',
-            email: 'bs@abc.com',
-            phone: '877779333',
-            address: "England",
-            city: "London"
-        }, ]; //object
+        const customerAPI = "http://localhost:4000/customer";
+        let customers = [];
 
-        // localStorage
-        if (localStorage.getItem('_customers') != null) {
-            try {
-                customers = JSON.parse(window.localStorage.getItem('_customers'))
-            } catch (e) {
+        loadCustomers = async() => {
+            let temp = await fetch(customerAPI).
+            then(response => response.json())
+                .then(data => (data));
 
-            }
+            customers = temp;
+            updateGUI(customers);
         }
 
+        // let customers = [{
+        //     id: 1,
+        //     name: 'MD Zaid',
+        //     email: 'zaid@yahoo.com',
+        //     phone: '9035486843',
+        //     address: "India",
+        //     city: "Bangalore"
+        // }, {
+        //     id: 2,
+        //     name: 'Abd Villers',
+        //     email: 'abd360@mial.con',
+        //     phone: '9379525772',
+        //     address: "South Africa",
+        //     city: "Cape Town"
+        // }, {
+        //     id: 3,
+        //     name: 'B Stokes',
+        //     email: 'bs@abc.com',
+        //     phone: '877779333',
+        //     address: "England",
+        //     city: "London"
+        // }, ]; //object
+
+        // localStorage
+        // if (localStorage.getItem('_customers') != null) {
+        //     try {
+        //         // customers = JSON.parse(window.localStorage.getItem('_customers'))
+        //     } catch (e) {
+
+        //     }
+        // }
+
         let updateCustomersToStorage = () => {
-            window.localStorage.setItem('_customers', JSON.stringify(customers));
+            // window.localStorage.setItem('_customers', JSON.stringify(customers));
         }
 
 
@@ -117,7 +129,7 @@
                 tempArray[0].address = address;
                 tempArray[0].city = city;
             }
-            updateGUI();
+            updateGUI(customers);
             updateCustomersToStorage();
             document.getElementById('addBtn').value = "Add"
         }
@@ -137,7 +149,7 @@
 
 
         // update GUI or rendering data in table
-        var updateGUI = function() {
+        var updateGUI = function(customers) {
             const result = document.getElementById("result"); //result is the list
             var customerTable = `
             <table class= "table table-dark table-striped table-hover table-responsive-lg sortable">
@@ -314,7 +326,8 @@
 
                 <div id="result"></div>
                 <script type="text/javascript">
-                    updateGUI(customers);
+                    // updateGUI(customers);
+                    loadCustomers();
                 </script>
             </div>
         </div>
