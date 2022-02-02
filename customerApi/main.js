@@ -51,18 +51,55 @@ app.post('/customer', (req, res) => {
 });
 
 
-app.put('/customer/:id', (req, res) => {
-    var id = req.params.id;
+
+// update customer by id => put
+// app.put('/customer/:id', (req, res) => {
+//     var id = req.params.id;
+//     var customer = req.body;
+//     var index = customers.findIndex(c => c.id === id);
+//     if (index > -1) {
+//         customers[index] = customer;
+//         res.send({ result: 'success', msg: 'customer updated ok' });
+//     } else {
+//         res.send({ result: 'error', msg: 'customer not found' });
+//     }
+// });
+
+
+
+// delete customer by id => delete
+// app.delete('/customer/:id', (req, res) => {
+//     var id = req.params.id;
+//     var customer = req.body;
+//     var index = customers.findIndex(c => c.id === id);
+//     if (index > -1) {
+//         customers[index] = customer;
+//         res.send({ result: 'success', msg: 'customer deleted ' });
+//     } else {
+//         res.send({ result: 'error', msg: 'customer not found' });
+//     }
+// });
+
+
+
+// update customer without id => put
+app.put('/customer', function(req, res) { //update
     var customer = req.body;
-    var index = customers.findIndex(c => c.id === id);
-    if (index > -1) {
-        customers[index] = customer;
-        res.send({ result: 'success', msg: 'customer updated ok' });
-    } else {
-        res.send({ result: 'error', msg: 'customer not found' });
+    for (var i = 0; i < customers.length; i++) {
+        if (customer.id == customers[i].id) {
+            customers[i] = customer;
+            break;
+        }
     }
+    res.send({ result: "ok", msg: "record updated successfully" });
 });
 
 
+// delete customer without id => delete
+app.delete('/customer', function(req, res) {
+    var id = req.body.id;
+    customers = customers.filter((item) => (item.id != id));
+    res.send({ result: "ok", msg: "record deleted successfully" });
+});
 
 app.listen(4000);
