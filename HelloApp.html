@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script type="text/javascript">
+        // getting help from internet is OK
+        print = function(msg) {
+            console.log(msg)
+        }
+        timeCounter = function(caller, count) {
+
+            for (let i = 0; i < count; i++) {
+                // assignment to add sleep of 1 second here
+                // don't use Async / Wait
+                // Internet help is OK
+                // // No help from other participants
+                // print(caller + ": " + i + " seconds are over.");
+                setTimeout(function() {
+                    print(caller + ": " + i + " seconds are over.");
+                }, 1000)
+
+            }
+        }
+    </script>
+    <h1>Timer</h1>
+    <div>
+        <form>
+            <input type="button" name="" onclick="timeCounter('B1',10)" value="B1"><br/><br/>
+            <input type="button" name="" onclick="timeCounter('B2',14)" value="B2"><br/><br/>
+        </form>
+    </div>
+
+</body>
+
+</html>

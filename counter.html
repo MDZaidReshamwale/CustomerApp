@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>COUNTER APP</h1>
+    <form>
+        <label id="output"> 0</label><br/><br/>
+        <input type="button" value="Increment +" onclick="increment()"/>
+        <input type="button" value="Deccrement -" onclick="decrement()"/>
+        <input type="button" value="Reset" onclick="reset()"/>
+    </form>
+
+</body>
+<script>
+// select the element
+let cont = 0;
+// increment the value
+function increment(){
+    cont++;
+     document.getElementById('output').innerHTML = cont;
+}
+// decrement the value
+function decrement(){
+    cont--;
+     document.getElementById('output').innerHTML = cont;
+}
+// reset the value
+function reset(){
+     cont = 0;
+     document.getElementById('output').innerHTML = cont;
+}
+</script>
+</html>
