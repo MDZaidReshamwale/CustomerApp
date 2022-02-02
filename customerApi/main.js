@@ -42,12 +42,25 @@ app.get('/customer', (req, res) => {
 });
 
 
-// post request
+
 app.post('/customer', (req, res) => {
     var customer = req.body;
     customer.id = Date.now() + 'r';
     customers.push(customer);
     res.send({ result: 'success', msg: 'customer added ok' });
+});
+
+
+app.put('/customer/:id', (req, res) => {
+    var id = req.params.id;
+    var customer = req.body;
+    var index = customers.findIndex(c => c.id === id);
+    if (index > -1) {
+        customers[index] = customer;
+        res.send({ result: 'success', msg: 'customer updated ok' });
+    } else {
+        res.send({ result: 'error', msg: 'customer not found' });
+    }
 });
 
 
